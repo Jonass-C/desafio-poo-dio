@@ -14,11 +14,11 @@ public class Curso extends Conteudo {
 
     @Override
     public double calcularXp() {
-        return XP_PADRAO * cargaHoraria;
+        return XP_PADRAO + cargaHoraria;
     }
 
     @Override
     public String toString() {
-        return String.format("Título: %s - Descrição: %s - Carga horária: %d\n", getTitulo(), getDescricao(), cargaHoraria);
+        return String.format("Título: %s - Descrição: %s - Carga horária: %d", getTitulo(), getDescricao(), cargaHoraria);
     }
 }

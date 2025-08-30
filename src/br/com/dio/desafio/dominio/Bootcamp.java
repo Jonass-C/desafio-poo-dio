@@ -1,7 +1,10 @@
 package br.com.dio.desafio.dominio;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.Objects;
 
 public class Bootcamp {
 

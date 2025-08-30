@@ -21,6 +21,6 @@ public class Mentoria extends Conteudo{
 
     @Override
     public String toString() {
-        return String.format("Mentoria: %s - Descrição: %s - Data: %s\n", getTitulo(), getDescricao(), data);
+        return String.format("Mentoria: %s - Descrição: %s - Data: %s", getTitulo(), getDescricao(), data);
     }
 }
