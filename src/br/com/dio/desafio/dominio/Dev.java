@@ -11,9 +11,15 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+    public Dev(String nome, Set<Conteudo> conteudosInscritos, Set<Conteudo> conteudosConcluidos) {
+        this.nome = nome;
+        this.conteudosInscritos = conteudosInscritos;
+        this.conteudosConcluidos = conteudosConcluidos;
+    }
+
     public void inscreverBootcamp(Bootcamp bootcamp) {
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
-        bootcamp.getDevsIncristos().add(this);
+        bootcamp.getDevsInscritos().add(this);
     }
 
     public void progredir() {
@@ -69,4 +75,41 @@ public class Dev {
     public int hashCode() {
         return Objects.hash(nome, conteudosInscritos, conteudosConcluidos);
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private String nome;
+        private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
+        private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+        private Bootcamp bootcampParaInscrever;
+
+        public Builder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder conteudoInscrito(Bootcamp bootcamp) {
+            this.conteudosInscritos.addAll(bootcamp.getConteudos());
+            this.bootcampParaInscrever =  bootcamp;
+            return this;
+        }
+
+        public Builder conteudoConcluido(Conteudo conteudo) {
+            this.conteudosConcluidos.add(conteudo);
+            return this;
+        }
+
+        public Dev build() {
+            Dev dev = new Dev(nome, conteudosInscritos, conteudosConcluidos);
+            if (bootcampParaInscrever != null)
+                dev.inscreverBootcamp(bootcampParaInscrever);
+            return dev;
+        }
+
+    }
+
 }
